@@ -1,0 +1,27 @@
+{
+  "배송_delivery": {
+    "labeled_neg": 146,
+    "cv_macro_f1": 0.867,
+    "cv_neg_f1": 0.74
+  },
+  "가격_price": {
+    "labeled_neg": 64,
+    "cv_macro_f1": 0.759,
+    "cv_neg_f1": 0.458
+  },
+  "품질_quality": {
+    "labeled_neg": 1262,
+    "cv_macro_f1": 0.709,
+    "cv_neg_f1": 0.79
+  },
+  "포장_packaging": {
+    "labeled_neg": 71,
+    "cv_macro_f1": 0.746,
+    "cv_neg_f1": 0.552
+  },
+  "서비스_service": {
+    "labeled_neg": 53,
+    "cv_macro_f1": 0.562,
+    "cv_neg_f1": 0.385
+  }
+}

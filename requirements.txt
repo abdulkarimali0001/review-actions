@@ -1,0 +1,8 @@
+pandas>=2.0
+numpy>=1.24
+scikit-learn>=1.3
+scipy>=1.10
+openpyxl>=3.1
+google-genai>=1.0   # only for the Gemini steps
+kiwipiepy>=0.18    # only for ablation_tokenizer.py
+matplotlib>=3.7

@@ -1,0 +1,141 @@
+{
+  "label_source": "claude",
+  "labels_file": "annotation/claude_labels.csv",
+  "items_used": 2944,
+  "rq1_prevalence": {
+    "mismatch_rate_all_reviews": 0.0327,
+    "mixed_rate_all_reviews": 0.0509,
+    "mismatch_rate_by_rating": {
+      "1": 0.0433,
+      "2": 0.0524,
+      "4": 0.0468,
+      "5": 0.0091
+    },
+    "mismatches_in_sample": 863,
+    "estimated_mismatched_reviews_in_dataset": 6438
+  },
+  "rq2_detection": {
+    "tfidf_baseline": {
+      "threshold_0.5": {
+        "sample": {
+          "precision": 0.485,
+          "recall": 0.986,
+          "f1": 0.65
+        },
+        "weighted": {
+          "precision": 0.314,
+          "recall": 0.735,
+          "f1": 0.44
+        }
+      },
+      "threshold_0.7": {
+        "sample": {
+          "precision": 0.599,
+          "recall": 0.919,
+          "f1": 0.726
+        },
+        "weighted": {
+          "precision": 0.468,
+          "recall": 0.627,
+          "f1": 0.536
+        }
+      },
+      "threshold_0.9": {
+        "sample": {
+          "precision": 0.697,
+          "recall": 0.801,
+          "f1": 0.745
+        },
+        "weighted": {
+          "precision": 0.74,
+          "recall": 0.414,
+          "f1": 0.531
+        }
+      },
+      "best_threshold_on_sample": 0.84,
+      "best": {
+        "sample": {
+          "precision": 0.674,
+          "recall": 0.847,
+          "f1": 0.751
+        },
+        "weighted": {
+          "precision": 0.641,
+          "recall": 0.504,
+          "f1": 0.564
+        }
+      }
+    },
+    "kcelectra_scores": {
+      "threshold_0.5": {
+        "sample": {
+          "precision": 0.659,
+          "recall": 0.957,
+          "f1": 0.78
+        },
+        "weighted": {
+          "precision": 0.467,
+          "recall": 0.73,
+          "f1": 0.57
+        }
+      },
+      "threshold_0.7": {
+        "sample": {
+          "precision": 0.711,
+          "recall": 0.903,
+          "f1": 0.796
+        },
+        "weighted": {
+          "precision": 0.573,
+          "recall": 0.669,
+          "f1": 0.617
+        }
+      },
+      "threshold_0.9": {
+        "sample": {
+          "precision": 0.83,
+          "recall": 0.736,
+          "f1": 0.78
+        },
+        "weighted": {
+          "precision": 0.756,
+          "recall": 0.508,
+          "f1": 0.608
+        }
+      },
+      "best_threshold_on_sample": 0.81,
+      "best": {
+        "sample": {
+          "precision": 0.776,
+          "recall": 0.845,
+          "f1": 0.809
+        },
+        "weighted": {
+          "precision": 0.681,
+          "recall": 0.595,
+          "f1": 0.635
+        }
+      }
+    }
+  },
+  "baseline_text_sentiment_accuracy_on_clear_texts": {
+    "sample (enriched with hard cases)": 0.813,
+    "weighted to all reviews": 0.9589
+  },
+  "aspects_opposite_to_rating_in_mismatches": {
+    "배송_delivery": 0.136,
+    "가격_price": 0.112,
+    "품질_quality": 0.614,
+    "포장_packaging": 0.031,
+    "서비스_service": 0.014,
+    "기타_other": 0.02
+  },
+  "complaints_hidden_in_4_5_star_reviews": {
+    "배송_delivery": 0.1,
+    "가격_price": 0.042,
+    "품질_quality": 0.814,
+    "포장_packaging": 0.052,
+    "서비스_service": 0.016,
+    "기타_other": 0.044
+  }
+}

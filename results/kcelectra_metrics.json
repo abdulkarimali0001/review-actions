@@ -1,0 +1,10 @@
+{
+  "model": "beomi/KcELECTRA-base-v2022",
+  "train_size": 100000,
+  "epochs": 1,
+  "train_seconds": 343,
+  "accuracy": 0.9443,
+  "macro_f1": 0.9443,
+  "gpu": "Colab T4",
+  "note": "Same 80/20 split as baseline.py; annotation sample excluded from training."
+}

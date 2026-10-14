@@ -1,0 +1,91 @@
+﻿detector,error,item,rating,label,disagreement,negation,contrast,short,mixed_text,text
+tfidf,FN,886,5,neg,0.11,False,True,False,False,남지친구가 평소 라지잊는데 샹각보다 쿠네용
+tfidf,FN,2402,2,pos,0.307,False,False,False,False,"가격대에 맞는성능인거 같네요...,"
+tfidf,FN,735,2,pos,0.163,False,False,True,False,재구매 만든 이유가 있음.
+tfidf,FN,452,2,pos,0.293,False,True,False,False,배송을 빠르게 잘받았어요. 그냥 아쉬운 느낌 느꼈지만 괜찮아요.
+tfidf,FN,434,2,pos,0.198,False,False,False,False,거짓말보태서솜털만큼가벼워요 ㅋ손안닿는곳에물건올릴때써야할듯. 드릴필수
+tfidf,FN,2502,1,pos,0.285,False,False,True,False,그냥괜찬아요추천합으러
+tfidf,FN,2245,1,pos,0.194,False,False,False,False,재구매 저아요.;;;;;;;
+tfidf,FN,2223,1,pos,0.362,False,True,False,False,잘받았습니다 배송은 늦었지만
+tfidf,FN,2318,1,pos,0.408,False,False,False,False,기대하였던 품질은 아니오나 쓸만해요
+tfidf,FN,2473,1,pos,0.24,False,False,False,False,설치하고 5분만에 바로잡음;;
+tfidf,FN,2714,4,neg,0.241,False,False,False,False,좀 크다고 생각합니다. 조금 작았으면 용도가 많았겠다 싶습니다
+tfidf,FN,82,4,neg,0.42,False,False,False,False,잘받았습니다 모르겠어요 우루오스 ... 는 아닌것 같아서 갈아탔어요^^♡
+tfidf,FN,2834,5,neg,0.676,False,False,False,False,재구매 새끼 손가락이 조금 작습니다
+tfidf,FN,433,5,neg,0.757,True,False,False,False,재구매 애기가 킨더밀쉬를 잘 먹어주면 좋은데ㅠㅠ 거의 안먹어요...단맛이 없어서 그런가...
+tfidf,FN,90,5,neg,0.852,True,False,False,False,세제가 완전 물같네요.. 점성이 하나도 없이.. 세탁력은 좀 더 써봐야 알거 같아요
+tfidf,FP,578,2,mixed,0.943,False,True,False,True,일단 빠른배송은 좋았구요 정리하려고 보는데 저렇게 뚜껑에 작살 나있도라...
+tfidf,FP,1164,2,mixed,0.91,False,False,False,True,예뿐데 작아요~조금 더 크면 눈에잘뛰고 더예쁠거같아요~~
+tfidf,FP,1311,2,mixed,0.917,False,True,True,True,맛있는데 잘녹아요 ㅠ
+tfidf,FP,491,2,neutral,0.994,False,False,True,False,엄마 선물로 드렸어용
+tfidf,FP,1352,2,neutral,0.971,False,False,False,False,아직 태어나기전이라 안타봤어요 빨리 먹여보고싶어요
+tfidf,FP,1462,2,neutral,0.908,False,False,True,False,삼양라면 오랜만에 먹네요.
+tfidf,FP,1728,2,neutral,0.953,False,False,False,False,아직 안써봤는 데 기대가 되네요^^
+tfidf,FP,1366,2,neg,0.951,False,False,False,False,높아서 다른 베게 주문했어요
+tfidf,FP,2880,2,mixed,0.935,False,False,False,True,아이가 좋아하네요! 보는 위치에 따라 흐릿하게 보이네요!!
+tfidf,FP,1204,2,neutral,0.92,False,False,True,False,정품이 최고인듯
+tfidf,FP,2683,2,neutral,0.949,False,False,False,False,코딩하려고 구입했어요 차량구입하고 코딩 배우려고 구입했습니다. 배송은3일정도걸렸어요 시간있을때 공부해서 코딩 도전해야겠네요ㅋ
+tfidf,FP,1384,2,mixed,0.969,False,False,False,True,좋아요 좋네요 좋습니다 소리가 커서 별로
+tfidf,FP,2082,2,mixed,0.918,False,True,False,True,포장도 엄청 잘 해서 보내주셨어요 재료도 신선하니 좋았어요 필요한만큼 딱딱 준비되어져있어서 요리도 금방 했습니다 근데 양념해서 먹으니 제 입맛에는 많이 짜더라구요..ㅡ.ㅡ
+tfidf,FP,279,2,neutral,0.942,False,False,False,False,향기는 향긋하고 좋은데 부드러움과 촉촉함은 아직 잘 모르겠어요. 꾸준히 써봐야겠어요
+tfidf,FP,1614,2,neutral,0.903,True,False,False,False,피부에 촉촉히 스며 든다는 느낌은 덜 한거같네요 트러블은 없고 향은 괜찮아요
+kcelectra,FN,886,5,neg,0.258,False,True,False,False,남지친구가 평소 라지잊는데 샹각보다 쿠네용
+kcelectra,FN,735,2,pos,0.493,False,False,True,False,재구매 만든 이유가 있음.
+kcelectra,FN,434,2,pos,0.097,False,False,False,False,거짓말보태서솜털만큼가벼워요 ㅋ손안닿는곳에물건올릴때써야할듯. 드릴필수
+kcelectra,FN,2402,2,pos,0.137,False,False,False,False,"가격대에 맞는성능인거 같네요...,"
+kcelectra,FN,2223,1,pos,0.444,False,True,False,False,잘받았습니다 배송은 늦었지만
+kcelectra,FN,2502,1,pos,0.264,False,False,True,False,그냥괜찬아요추천합으러
+kcelectra,FN,2318,1,pos,0.357,False,False,False,False,기대하였던 품질은 아니오나 쓸만해요
+kcelectra,FN,2245,1,pos,0.357,False,False,False,False,재구매 저아요.;;;;;;;
+kcelectra,FN,2473,1,pos,0.031,False,False,False,False,설치하고 5분만에 바로잡음;;
+kcelectra,FN,2714,4,neg,0.806,False,False,False,False,좀 크다고 생각합니다. 조금 작았으면 용도가 많았겠다 싶습니다
+kcelectra,FN,82,4,neg,0.249,False,False,False,False,잘받았습니다 모르겠어요 우루오스 ... 는 아닌것 같아서 갈아탔어요^^♡
+kcelectra,FN,277,5,neg,0.751,False,True,False,False,쓴지 7일 이상이 지났는데 확실히 잡 트러블 많이 들어갔어요. 그리고 정말 작아요
+kcelectra,FN,2834,5,neg,0.347,False,False,False,False,재구매 새끼 손가락이 조금 작습니다
+kcelectra,FN,2741,5,neg,0.802,False,False,False,False,코랄색상이 약간 진베이지 같아요..좀다 쨍한 색이였음 이뻣을텐데
+kcelectra,FN,1141,2,pos,0.851,False,True,False,False,"우리아가는 로션을 발라도 건조해서 피부가 원래 그런줄 일았는데, 다른 제품으로 로션 바꾸고 뽀송해졌어요."
+kcelectra,FP,1089,2,mixed,0.933,False,True,False,True,좀 어려웠지만 만들고나니 넘 멋지네요! 중간에 불량이 있었는데 서비스센터 번호 알려주셔서 교환받았어요 좀 번거로웠네요
+kcelectra,FP,1495,5,neutral,0.953,False,False,False,False,무가당 두유 주문하면서 같이 주문한건데 단맛은 시판두유들만큼 달고 맛은 미숫가루맛임.
+kcelectra,FP,2851,5,neutral,0.928,False,False,True,False,최고라고하긴좀 딱 가격만큼
+kcelectra,FP,1516,5,mixed,0.992,False,False,False,True,판매자분에편지 써비스로주신 젤리....택배사가문제겠죠 도착도 안한택배를 배송완료로 해놓고..
+kcelectra,FP,1244,5,neutral,0.942,False,False,False,False,비닐에 쌓여서 왔습느다~~ ~
+kcelectra,FP,2034,5,neutral,0.982,False,False,False,False,얼굴은 건조하고 민감하고 ....발 뒷꿈치는 갈라지고....총체적 난국이에요. 이제품 누가 추천해준것도 아니고 후기만 보고 구입했어요. 믿고 먹어보려구요. 개선되길 바라봅니다~~^^
+kcelectra,FP,2409,5,neutral,0.91,False,False,False,False,간이 된 음식을 먹기시작하니까 먹었다 안먹었다 하네요 ㅜㅜ 잘먹었던건데...ㅜ.ㅜ
+kcelectra,FP,621,5,pos,0.988,False,False,False,False,이사하고 작은 바퀴가 보이더니 약 발라놓으니 죽어있어요
+kcelectra,FP,616,5,pos,0.959,False,False,False,False,건조기에도 색이 잘 안빠져요
+kcelectra,FP,2538,5,pos,0.976,True,True,False,False,요즘 한겨울이라 즈위프트를 하는데 ...안장통이 없네요...타이어 빼고 타는데도...
+kcelectra,FP,2292,5,neutral,0.968,False,False,True,False,배송 3일만에 왔어여
+kcelectra,FP,2187,2,mixed,0.98,False,True,False,True,"현미 가래떡 맛있고, 포장도 꼼꼼하게 잘 보내주셨어요. 다만 배송을 깜빡하신 것인지 너무 늦게 보내주셨습니다."
+kcelectra,FP,1410,2,neutral,0.989,False,False,False,False,페이트 작업할일 있어서 미리 구입해놨어요
+kcelectra,FP,1726,2,neutral,0.944,False,False,False,False,설치완료 제발 잡히길바라요~~~
+kcelectra,FP,221,2,mixed,0.919,False,False,False,True,안경에 습기차네요 따뜻해서 좋앙ᆢ
+gemini,FN,452,2,pos,0.5,False,True,False,False,배송을 빠르게 잘받았어요. 그냥 아쉬운 느낌 느꼈지만 괜찮아요.
+gemini,FN,434,2,pos,0.0,False,False,False,False,거짓말보태서솜털만큼가벼워요 ㅋ손안닿는곳에물건올릴때써야할듯. 드릴필수
+gemini,FN,2318,1,pos,0.5,False,False,False,False,기대하였던 품질은 아니오나 쓸만해요
+gemini,FN,2223,1,pos,0.5,False,True,False,False,잘받았습니다 배송은 늦었지만
+gemini,FN,82,4,neg,0.5,False,False,False,False,잘받았습니다 모르겠어요 우루오스 ... 는 아닌것 같아서 갈아탔어요^^♡
+gemini,FN,277,5,neg,0.5,False,True,False,False,쓴지 7일 이상이 지났는데 확실히 잡 트러블 많이 들어갔어요. 그리고 정말 작아요
+gemini,FN,2086,5,neg,0.5,False,False,True,False,찢어져서 새로구입
+gemini,FN,2834,5,neg,0.5,False,False,False,False,재구매 새끼 손가락이 조금 작습니다
+gemini,FN,1481,2,pos,0.5,True,False,False,False,백탁없어 좋아요. 내용물이 적은지 퍼프에 잘 안묻어나는 게 좀 아쉬워요.
+gemini,FN,594,2,pos,0.5,False,True,False,False,배송정확해서 좋아요 바퀴벌레 때문에 구입했는데 바퀴벌레가 죽는지는 모르겠네요.
+gemini,FN,879,2,pos,0.5,False,False,False,False,연결봉에 끈끈한 접착제들이 뭍어있어서 ㅠㅠ 그거말고는 다 괜찮네요
+gemini,FN,1195,2,pos,0.5,False,True,False,False,광택이 있어 싼티는 나지만 부드러워요
+gemini,FN,1917,2,pos,0.5,False,False,False,False,첫구매입니다 다 괜찮은데 숙성이 좀 필요할거 같네요~
+gemini,FN,2945,2,pos,0.5,False,True,False,False,비싼감은있지만 제품은 괜찮아요
+gemini,FN,1165,2,pos,0.5,False,False,False,False,다 좋은데 저한테는 조금 연한것 같아요
+gemini,FP,2088,2,mixed,1.0,False,False,False,True,냄새 안나고 좋긴한데 맛이 좀 밍밍한 느낌? 사먹은 오리중에서는 괜찮은 편이예요
+gemini,FP,29,1,neg,1.0,False,False,False,False,"남편 키가 187cm인데도 팔,다리가 너무 너무 길어요."
+gemini,FP,2427,5,pos,1.0,False,True,False,False,베란다 가리개로 사용하는데 길이가 좀더 길었으면하는 아쉬움이 있어요.
+gemini,FP,1516,5,mixed,1.0,False,False,False,True,판매자분에편지 써비스로주신 젤리....택배사가문제겠죠 도착도 안한택배를 배송완료로 해놓고..
+gemini,FP,293,2,neutral,1.0,False,False,False,False,재구매 받았어요!!!!!!!
+gemini,FP,122,2,neutral,1.0,False,False,True,False,생각보다매우크고박시합니다ㅋ
+gemini,FP,2027,2,neutral,1.0,False,False,False,False,어린이집에 물병 보낼때 뚜껑 보관 쉽게 하려고 구매했네요.
+gemini,FP,1884,2,neutral,1.0,False,False,True,False,보통이예요 잘 쓸께요^^
+gemini,FP,1726,2,neutral,1.0,False,False,False,False,설치완료 제발 잡히길바라요~~~
+gemini,FP,1317,4,pos,1.0,False,False,False,False,허리부분이 짧은게 약간 아쉽네요
+gemini,FP,2311,4,mixed,1.0,False,False,False,True,건전지가 한개가 안된상태에서 와서 4점
+gemini,FP,210,4,neutral,1.0,False,True,False,False,"연습용, 초보용이 맞네요. 그래도 좀...."
+gemini,FP,1852,4,mixed,1.0,False,False,False,True,칼자국이 좀 나네요 ㅠㅠㅠ뭐 주방도마는 바꿔줘야하니깐 그러려니 할ㅋ게요 ㅠㅠ아쉽긴 하네요 ㅜ
+gemini,FP,1320,4,mixed,1.0,True,False,False,True,가격대비 괜찮음. 쿠션은 보통인데 피부와 접촉면이 아주 매끄럽지는 않음. 시간 지나면 바람이 계속 빠짐
+gemini,FP,2782,2,neutral,1.0,False,False,False,False,제 입맛엔..조금 놔두고 시원하게 익혀서 먹으면 맛있을꺼같아요^^

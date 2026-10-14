@@ -1,0 +1,13 @@
+{
+  "gemini_A_runs": {
+    "runs": 3,
+    "items": 3000,
+    "fleiss_kappa_sentiment": 0.938,
+    "identical_across_runs": 0.937
+  },
+  "gemini_prompt_A_vs_B": {
+    "items": 2937,
+    "cohen_kappa_sentiment": 0.916,
+    "agreement": 0.943
+  }
+}

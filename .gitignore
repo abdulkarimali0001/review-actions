@@ -1,0 +1,15 @@
+data/
+results/all_scores.csv
+__pycache__/
+.DS_Store
+results/baseline_run.log
+results/mock_*
+results/llm_cache/mock_*
+annotation/mock_*
+.env
+.ipynb_checkpoints/
+.venv/
+*.pyc
+.pytest_cache/
+*.bak
+results/gemini_run.log

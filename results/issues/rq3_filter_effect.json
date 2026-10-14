@@ -1,0 +1,121 @@
+{
+  "기타_other": {
+    "issues": 39,
+    "low_star_reviews": 70810,
+    "low_star_reviews_with_positive_text": 5410,
+    "share_of_low_star_reviews_that_are_not_complaints": 0.076,
+    "complaints_found_only_in_4_5_star_reviews": 11386,
+    "share_of_complaints_hidden_in_4_5_star": 0.16,
+    "rank_correlation_star_vs_trusted": 0.996,
+    "issues_that_move_2plus_ranks": 4,
+    "most_underestimated_issue": {
+      "name": "구입했는 / 구입하 / 구입한 / 구입했어",
+      "aspect": "품질_quality",
+      "hidden_share": 0.233,
+      "rank_by_stars": 21,
+      "rank_trusted": 21
+    }
+  },
+  "디지털_digital": {
+    "issues": 12,
+    "low_star_reviews": 2530,
+    "low_star_reviews_with_positive_text": 89,
+    "share_of_low_star_reviews_that_are_not_complaints": 0.035,
+    "complaints_found_only_in_4_5_star_reviews": 412,
+    "share_of_complaints_hidden_in_4_5_star": 0.149,
+    "rank_correlation_star_vs_trusted": 0.986,
+    "issues_that_move_2plus_ranks": 0,
+    "most_underestimated_issue": {
+      "name": "화면 / 색상이 / 색이 / 달라",
+      "aspect": "품질_quality",
+      "hidden_share": 0.199,
+      "rank_by_stars": 4,
+      "rank_trusted": 4
+    }
+  },
+  "뷰티_beauty": {
+    "issues": 8,
+    "low_star_reviews": 2310,
+    "low_star_reviews_with_positive_text": 198,
+    "share_of_low_star_reviews_that_are_not_complaints": 0.086,
+    "complaints_found_only_in_4_5_star_reviews": 695,
+    "share_of_complaints_hidden_in_4_5_star": 0.271,
+    "rank_correlation_star_vs_trusted": 0.905,
+    "issues_that_move_2plus_ranks": 2,
+    "most_underestimated_issue": {
+      "name": "촉촉하 / 촉촉해 / 촉촉한 / 촉촉함",
+      "aspect": "품질_quality",
+      "hidden_share": 0.463,
+      "rank_by_stars": 7,
+      "rank_trusted": 5
+    }
+  },
+  "생활주방_home": {
+    "issues": 27,
+    "low_star_reviews": 4630,
+    "low_star_reviews_with_positive_text": 213,
+    "share_of_low_star_reviews_that_are_not_complaints": 0.046,
+    "complaints_found_only_in_4_5_star_reviews": 996,
+    "share_of_complaints_hidden_in_4_5_star": 0.181,
+    "rank_correlation_star_vs_trusted": 0.989,
+    "issues_that_move_2plus_ranks": 7,
+    "most_underestimated_issue": {
+      "name": "설치 / 배송은 / 친절 / 기사",
+      "aspect": "배송_delivery",
+      "hidden_share": 0.343,
+      "rank_by_stars": 22,
+      "rank_trusted": 20
+    }
+  },
+  "식품_food": {
+    "issues": 33,
+    "low_star_reviews": 9023,
+    "low_star_reviews_with_positive_text": 839,
+    "share_of_low_star_reviews_that_are_not_complaints": 0.093,
+    "complaints_found_only_in_4_5_star_reviews": 2076,
+    "share_of_complaints_hidden_in_4_5_star": 0.207,
+    "rank_correlation_star_vs_trusted": 0.961,
+    "issues_that_move_2plus_ranks": 15,
+    "most_underestimated_issue": {
+      "name": "맛있어요 / 맛있어서 / 양이 / 먹어보",
+      "aspect": "품질_quality",
+      "hidden_share": 0.606,
+      "rank_by_stars": 25,
+      "rank_trusted": 17
+    }
+  },
+  "유아반려_baby_pet": {
+    "issues": 4,
+    "low_star_reviews": 1080,
+    "low_star_reviews_with_positive_text": 109,
+    "share_of_low_star_reviews_that_are_not_complaints": 0.101,
+    "complaints_found_only_in_4_5_star_reviews": 365,
+    "share_of_complaints_hidden_in_4_5_star": 0.302,
+    "rank_correlation_star_vs_trusted": 1.0,
+    "issues_that_move_2plus_ranks": 0,
+    "most_underestimated_issue": {
+      "name": "샀는데 / 이유식 / 쓰려고 / 실리",
+      "aspect": "품질_quality",
+      "hidden_share": 0.39,
+      "rank_by_stars": 3,
+      "rank_trusted": 3
+    }
+  },
+  "의류잡화_fashion": {
+    "issues": 23,
+    "low_star_reviews": 9252,
+    "low_star_reviews_with_positive_text": 553,
+    "share_of_low_star_reviews_that_are_not_complaints": 0.06,
+    "complaints_found_only_in_4_5_star_reviews": 2160,
+    "share_of_complaints_hidden_in_4_5_star": 0.203,
+    "rank_correlation_star_vs_trusted": 0.988,
+    "issues_that_move_2plus_ranks": 3,
+    "most_underestimated_issue": {
+      "name": "가격대비 / 품질 / 입을만 / 저렴",
+      "aspect": "품질_quality",
+      "hidden_share": 0.385,
+      "rank_by_stars": 19,
+      "rank_trusted": 16
+    }
+  }
+}

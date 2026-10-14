@@ -1,0 +1,12 @@
+{
+  "threshold": 0.9,
+  "n_reviews": 199908,
+  "n_candidates": 3632,
+  "share_candidates": 0.0182,
+  "candidates_by_rating": {
+    "1": 614,
+    "2": 1605,
+    "4": 698,
+    "5": 715
+  }
+}

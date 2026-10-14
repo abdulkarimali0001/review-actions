@@ -1,0 +1,597 @@
+{
+  "label_source": "claude",
+  "threshold": 0.9,
+  "bootstrap_draws": 1000,
+  "confidence_intervals": {
+    "mismatch_rate": {
+      "estimate": 0.0326,
+      "ci95": [
+        0.0275,
+        0.0388
+      ]
+    },
+    "tfidf_precision": {
+      "estimate": 0.7389,
+      "ci95": [
+        0.714,
+        0.7628
+      ]
+    },
+    "tfidf_recall": {
+      "estimate": 0.4153,
+      "ci95": [
+        0.3495,
+        0.4934
+      ]
+    },
+    "tfidf_f1": {
+      "estimate": 0.5317,
+      "ci95": [
+        0.4745,
+        0.5923
+      ]
+    },
+    "kcelectra_precision": {
+      "estimate": 0.756,
+      "ci95": [
+        0.6753,
+        0.8248
+      ]
+    },
+    "kcelectra_recall": {
+      "estimate": 0.5105,
+      "ci95": [
+        0.4315,
+        0.6086
+      ]
+    },
+    "kcelectra_f1": {
+      "estimate": 0.6095,
+      "ci95": [
+        0.5414,
+        0.6888
+      ]
+    },
+    "gemini_precision": {
+      "estimate": 0.8926,
+      "ci95": [
+        0.8167,
+        0.9523
+      ]
+    },
+    "gemini_recall": {
+      "estimate": 0.7936,
+      "ci95": [
+        0.7017,
+        0.8711
+      ]
+    },
+    "gemini_f1": {
+      "estimate": 0.8402,
+      "ci95": [
+        0.7756,
+        0.8926
+      ]
+    },
+    "f1_kcelectra_minus_tfidf": {
+      "estimate": 0.0778,
+      "ci95": [
+        0.0221,
+        0.1424
+      ],
+      "share_of_draws_above_0": 0.996
+    },
+    "f1_gemini_minus_kcelectra": {
+      "estimate": 0.2307,
+      "ci95": [
+        0.1253,
+        0.3258
+      ],
+      "share_of_draws_above_0": 1.0
+    },
+    "f1_gemini_minus_tfidf": {
+      "estimate": 0.3085,
+      "ci95": [
+        0.2275,
+        0.386
+      ],
+      "share_of_draws_above_0": 1.0
+    }
+  },
+  "error_analysis": {
+    "all_items": {
+      "n": 2935,
+      "negation": 0.218,
+      "contrast": 0.275,
+      "short": 0.195,
+      "mixed_text": 0.112
+    },
+    "tfidf": {
+      "missed_mismatches (FN)": {
+        "n": 170,
+        "negation": 0.112,
+        "contrast": 0.182,
+        "short": 0.347,
+        "mixed_text": 0.0
+      },
+      "false_alarms (FP)": {
+        "n": 300,
+        "negation": 0.323,
+        "contrast": 0.38,
+        "short": 0.14,
+        "mixed_text": 0.397
+      },
+      "false_alarms_by_true_label": {
+        "mixed": 119,
+        "neutral": 94,
+        "pos": 79,
+        "neg": 8
+      }
+    },
+    "kcelectra": {
+      "missed_mismatches (FN)": {
+        "n": 225,
+        "negation": 0.062,
+        "contrast": 0.124,
+        "short": 0.511,
+        "mixed_text": 0.0
+      },
+      "false_alarms (FP)": {
+        "n": 130,
+        "negation": 0.2,
+        "contrast": 0.308,
+        "short": 0.123,
+        "mixed_text": 0.454
+      },
+      "false_alarms_by_true_label": {
+        "mixed": 59,
+        "neutral": 57,
+        "pos": 11,
+        "neg": 3
+      }
+    },
+    "gemini": {
+      "missed_mismatches (FN)": {
+        "n": 99,
+        "negation": 0.212,
+        "contrast": 0.394,
+        "short": 0.121,
+        "mixed_text": 0.0
+      },
+      "false_alarms (FP)": {
+        "n": 41,
+        "negation": 0.244,
+        "contrast": 0.146,
+        "short": 0.146,
+        "mixed_text": 0.317
+      },
+      "false_alarms_by_true_label": {
+        "neutral": 23,
+        "mixed": 13,
+        "pos": 4,
+        "neg": 1
+      }
+    },
+    "tfidf_to_kcelectra": {
+      "errors_fixed": 275,
+      "new_errors": 160,
+      "errors_both_make": 195
+    }
+  },
+  "cost_speed": {
+    "tfidf_baseline": {
+      "hardware": "laptop CPU",
+      "train_seconds_incl_vectorizing": 13.0,
+      "reviews_per_second": 24119,
+      "minutes_for_200k_reviews": 0.14,
+      "llm_requests_for_200k": 0
+    },
+    "kcelectra": {
+      "hardware": "Colab T4",
+      "train_seconds": 343,
+      "train_examples": 100000,
+      "llm_requests_for_200k": 0,
+      "reviews_per_second": "not measured (add timing to the Colab inference cell)"
+    },
+    "gemini_zero_shot": {
+      "requests_per_3000_reviews": 120,
+      "llm_requests_for_200k": 8000,
+      "reviews_per_request": 25,
+      "latency_and_tokens": "not logged for the runs so far; llm_client.py now records them, so the next Gemini run fills this in"
+    }
+  },
+  "cascade_pareto": [
+    {
+      "cheap_model": "tfidf",
+      "low": 0.5,
+      "high": 0.7,
+      "share_sent_to_llm": 0.0325,
+      "llm_requests_for_200k": 260,
+      "precision": 0.489,
+      "recall": 0.691,
+      "f1": 0.573
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.5,
+      "high": 0.8,
+      "share_sent_to_llm": 0.0467,
+      "llm_requests_for_200k": 374,
+      "precision": 0.635,
+      "recall": 0.674,
+      "f1": 0.654
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.5,
+      "high": 0.9,
+      "share_sent_to_llm": 0.0579,
+      "llm_requests_for_200k": 464,
+      "precision": 0.784,
+      "recall": 0.662,
+      "f1": 0.718
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.5,
+      "high": 0.95,
+      "share_sent_to_llm": 0.0648,
+      "llm_requests_for_200k": 519,
+      "precision": 0.87,
+      "recall": 0.65,
+      "f1": 0.744
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.5,
+      "high": 0.99,
+      "share_sent_to_llm": 0.0729,
+      "llm_requests_for_200k": 584,
+      "precision": 0.922,
+      "recall": 0.634,
+      "f1": 0.751
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.5,
+      "high": 1.01,
+      "share_sent_to_llm": 0.0762,
+      "llm_requests_for_200k": 610,
+      "precision": 0.93,
+      "recall": 0.632,
+      "f1": 0.752
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.3,
+      "high": 0.95,
+      "share_sent_to_llm": 0.1279,
+      "llm_requests_for_200k": 1024,
+      "precision": 0.842,
+      "recall": 0.68,
+      "f1": 0.753
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.3,
+      "high": 0.99,
+      "share_sent_to_llm": 0.136,
+      "llm_requests_for_200k": 1089,
+      "precision": 0.888,
+      "recall": 0.664,
+      "f1": 0.76
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.3,
+      "high": 1.01,
+      "share_sent_to_llm": 0.1393,
+      "llm_requests_for_200k": 1115,
+      "precision": 0.895,
+      "recall": 0.662,
+      "f1": 0.761
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.2,
+      "high": 0.95,
+      "share_sent_to_llm": 0.1783,
+      "llm_requests_for_200k": 1427,
+      "precision": 0.833,
+      "recall": 0.724,
+      "f1": 0.775
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.2,
+      "high": 0.99,
+      "share_sent_to_llm": 0.1865,
+      "llm_requests_for_200k": 1492,
+      "precision": 0.874,
+      "recall": 0.708,
+      "f1": 0.783
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.2,
+      "high": 1.01,
+      "share_sent_to_llm": 0.1898,
+      "llm_requests_for_200k": 1519,
+      "precision": 0.881,
+      "recall": 0.706,
+      "f1": 0.784
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.1,
+      "high": 0.9,
+      "share_sent_to_llm": 0.3086,
+      "llm_requests_for_200k": 2469,
+      "precision": 0.781,
+      "recall": 0.824,
+      "f1": 0.802
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.1,
+      "high": 0.95,
+      "share_sent_to_llm": 0.3155,
+      "llm_requests_for_200k": 2524,
+      "precision": 0.848,
+      "recall": 0.812,
+      "f1": 0.83
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.1,
+      "high": 0.99,
+      "share_sent_to_llm": 0.3236,
+      "llm_requests_for_200k": 2589,
+      "precision": 0.887,
+      "recall": 0.796,
+      "f1": 0.839
+    },
+    {
+      "cheap_model": "tfidf",
+      "low": 0.1,
+      "high": 1.01,
+      "share_sent_to_llm": 0.3269,
+      "llm_requests_for_200k": 2616,
+      "precision": 0.893,
+      "recall": 0.794,
+      "f1": 0.84
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.5,
+      "high": 0.7,
+      "share_sent_to_llm": 0.0127,
+      "llm_requests_for_200k": 102,
+      "precision": 0.57,
+      "recall": 0.71,
+      "f1": 0.632
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.5,
+      "high": 0.8,
+      "share_sent_to_llm": 0.0203,
+      "llm_requests_for_200k": 163,
+      "precision": 0.662,
+      "recall": 0.701,
+      "f1": 0.681
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.5,
+      "high": 0.9,
+      "share_sent_to_llm": 0.0289,
+      "llm_requests_for_200k": 232,
+      "precision": 0.763,
+      "recall": 0.686,
+      "f1": 0.722
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.5,
+      "high": 0.95,
+      "share_sent_to_llm": 0.0352,
+      "llm_requests_for_200k": 282,
+      "precision": 0.829,
+      "recall": 0.651,
+      "f1": 0.729
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.5,
+      "high": 0.99,
+      "share_sent_to_llm": 0.046,
+      "llm_requests_for_200k": 368,
+      "precision": 0.89,
+      "recall": 0.624,
+      "f1": 0.733
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.3,
+      "high": 0.9,
+      "share_sent_to_llm": 0.053,
+      "llm_requests_for_200k": 425,
+      "precision": 0.773,
+      "recall": 0.751,
+      "f1": 0.762
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.3,
+      "high": 0.95,
+      "share_sent_to_llm": 0.0594,
+      "llm_requests_for_200k": 475,
+      "precision": 0.835,
+      "recall": 0.717,
+      "f1": 0.771
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.3,
+      "high": 0.99,
+      "share_sent_to_llm": 0.0701,
+      "llm_requests_for_200k": 561,
+      "precision": 0.891,
+      "recall": 0.689,
+      "f1": 0.777
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.2,
+      "high": 0.9,
+      "share_sent_to_llm": 0.0728,
+      "llm_requests_for_200k": 583,
+      "precision": 0.787,
+      "recall": 0.815,
+      "f1": 0.801
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.2,
+      "high": 0.95,
+      "share_sent_to_llm": 0.0791,
+      "llm_requests_for_200k": 634,
+      "precision": 0.847,
+      "recall": 0.78,
+      "f1": 0.812
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.2,
+      "high": 0.99,
+      "share_sent_to_llm": 0.0899,
+      "llm_requests_for_200k": 720,
+      "precision": 0.899,
+      "recall": 0.753,
+      "f1": 0.82
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.1,
+      "high": 0.95,
+      "share_sent_to_llm": 0.1196,
+      "llm_requests_for_200k": 958,
+      "precision": 0.852,
+      "recall": 0.813,
+      "f1": 0.832
+    },
+    {
+      "cheap_model": "kcelectra",
+      "low": 0.1,
+      "high": 0.99,
+      "share_sent_to_llm": 0.1304,
+      "llm_requests_for_200k": 1044,
+      "precision": 0.903,
+      "recall": 0.785,
+      "f1": 0.84
+    }
+  ],
+  "cascade_heldout": [
+    {
+      "cheap_model": "tfidf",
+      "budget_share_to_llm": 0.15,
+      "repeats": 200,
+      "heldout_f1": {
+        "mean": 0.753,
+        "ci95": [
+          0.691,
+          0.821
+        ]
+      },
+      "heldout_share_sent_to_llm": {
+        "mean": 0.12,
+        "ci95": [
+          0.073,
+          0.149
+        ]
+      },
+      "llm_on_everything_f1_same_halves": {
+        "mean": 0.842,
+        "ci95": [
+          0.788,
+          0.906
+        ]
+      },
+      "f1_gap_to_llm_on_everything": {
+        "mean": 0.089,
+        "ci95": [
+          0.008,
+          0.169
+        ]
+      },
+      "most_picked_thresholds": [
+        {
+          "low": 0.3,
+          "high": 1.01,
+          "times": 118
+        },
+        {
+          "low": 0.5,
+          "high": 1.01,
+          "times": 47
+        },
+        {
+          "low": 0.3,
+          "high": 0.99,
+          "times": 21
+        }
+      ]
+    },
+    {
+      "cheap_model": "kcelectra",
+      "budget_share_to_llm": 0.15,
+      "repeats": 200,
+      "heldout_f1": {
+        "mean": 0.822,
+        "ci95": [
+          0.764,
+          0.883
+        ]
+      },
+      "heldout_share_sent_to_llm": {
+        "mean": 0.129,
+        "ci95": [
+          0.101,
+          0.17
+        ]
+      },
+      "llm_on_everything_f1_same_halves": {
+        "mean": 0.836,
+        "ci95": [
+          0.768,
+          0.901
+        ]
+      },
+      "f1_gap_to_llm_on_everything": {
+        "mean": 0.014,
+        "ci95": [
+          -0.018,
+          0.068
+        ]
+      },
+      "most_picked_thresholds": [
+        {
+          "low": 0.1,
+          "high": 0.99,
+          "times": 109
+        },
+        {
+          "low": 0.1,
+          "high": 0.9,
+          "times": 35
+        },
+        {
+          "low": 0.1,
+          "high": 1.01,
+          "times": 30
+        }
+      ]
+    }
+  ]
+}

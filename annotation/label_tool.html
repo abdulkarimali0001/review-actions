@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review Labeling</title>
+<style>
+:root{--bg:#f7f6f3;--card:#fff;--ink:#1f1f1e;--muted:#6b6a64;--line:#dedcd5;--acc:#2a78d6;--pos:#1a8a5f;--neg:#c2410c;--mix:#8a5cf6;--neu:#6b6a64}
+@media (prefers-color-scheme:dark){:root{--bg:#161615;--card:#1f1f1e;--ink:#f0efec;--muted:#a9a89f;--line:#3a3935;--acc:#5598e7;--pos:#3fbf8a;--neg:#f07a43;--mix:#a78bfa;--neu:#a9a89f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
+h1{font-size:18px;margin:0}.muted{color:var(--muted);font-size:13px}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:6px 0 16px}.bar>div{height:100%;background:var(--acc);width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.review{font-size:20px;line-height:1.6;margin:6px 0 18px;word-break:keep-all;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 12px;cursor:pointer}
+button:hover{border-color:var(--acc)}button.on{color:#fff;border-color:transparent}
+.s-pos.on{background:var(--pos)}.s-neg.on{background:var(--neg)}.s-mixed.on{background:var(--mix)}.s-neutral.on{background:var(--neu)}
+.asp{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.asp div{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.asp button{padding:4px 9px;font-size:13px}.a-pos.on{background:var(--pos)}.a-neg.on{background:var(--neg)}
+kbd{font:12px ui-monospace,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 4px;color:var(--muted)}
+textarea{width:100%;font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px;min-height:44px}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:8px;flex-wrap:wrap}
+.primary{background:var(--acc);color:#fff;border-color:transparent}
+details{margin-top:16px}summary{cursor:pointer;color:var(--muted)}
+.start{max-width:420px;margin:12vh auto;text-align:center}.start button{margin:6px;padding:12px 22px;font-size:16px}
+.warn{color:var(--neg);font-size:13px;min-height:18px}
+</style></head><body><main id="app"></main>
+<script>
+const ITEMS = [{"item": 1, "text": "5핀 숏케이블 잘 받았습니다 제품은 더 사용해봐야 알겠지만 배송빠르고 현재까지 문제없네요 . 저렴한제품만 쓰다가 나름대로 가격이 있는 제품사용해 봅니다"}, {"item": 2, "text": "2주 넘게 걸렸습니다 배송"}, {"item": 3, "text": "재구매 바베큐장을 운영하고 있는데 항상 이용합니다"}, {"item": 4, "text": "맛이 없어요 ㅠㅠㅠ"}, {"item": 5, "text": "재구매 깔끔한 맛이에요^^"}, {"item": 6, "text": "183-92 입니다. XL사이즈가 크다크다 너무 커서 혹시나 해서 과감하게 M사이즈로 교체했는데 맞네요..... 참고 되셨으면 합니다. 너무 큽니다 사이즈! 소재는 딱 여름용입니다. 많이 얇습니다."}, {"item": 7, "text": "블로퍼운동화보다는 단화블로퍼에는 괜찮을것같아요~"}, {"item": 8, "text": "배송이 빠르고 포장도 잘되었네요 재구매 하는 사람은 헬스장갑이나 다른 사은품 주셨으면 좋겠습니다"}, {"item": 9, "text": "귀에 착용하기 너무너무×100 불편합니다ㅡㅡ 잘 끼워지지도 않고 아프고ㅡㅡ 이쁘긴한데 착용못하니 슬프네요ㅡㅡ"}, {"item": 10, "text": "배송빠르고 가격대비 좋습니다. 잘쓸께요"}, {"item": 11, "text": "케이스 변색은 되지 않으나 기스가 납니다 뒷면에 좀쓰다보면 기스 때문에 별루네요 가격대비 생활력 부족 으로 판단 됩니다 신중히 구매하세요.."}, {"item": 12, "text": "완전 빠르고 좋아요."}, {"item": 13, "text": "생각보다 넘 별로 였어요 맛은 솔직히 별로 근데 정말 신선해요 그리고 100%로라는것 첨가물없는 토마토 좋아하시는분께 강추드려요"}, {"item": 14, "text": "엄마 선물 드렸는데 잘 쓰고 계신다니 ᆢ"}, {"item": 15, "text": "남편이 꼬막을 좋아해서 꼬막비빔밥 해먹으려고 주문했어요~ 크기도 적당하고 비빔밥용으론 괜찮았어요 해감을 잘 못해서 뻘은 좀 남아있었지만 맛있게 잘 먹었습니다~ 3키로 한꺼번에 까놓느라 고생했지만 쫄깃쫄깃 너무 맛있어요~"}, {"item": 16, "text": "좋아요ㅜ잘쓸게요 ㅋ"}, {"item": 17, "text": "다른것 샀다가 분사가 맘에 안들어서 샀는데 토너가 점성이있는것도 아닌디 분사가 여전히 그저그러네요. 흑"}, {"item": 18, "text": "코로나19 때문에 예전에 주문한게 생각나서 첫 사용을하게 되었는데...헐 1000ml인줄 알았는데 500ml였내요...와~~ 황당하고 어이가 없습니가."}, {"item": 19, "text": "가격이저렴해요 베란다에 놓고 쓰는데 좋아요. 단 냄새는 좀나서 이틀 정도 환기시켰어요. 그거빼곤 좋아요"}, {"item": 20, "text": "마트에서 하나둘씩 사먹다가 대량으로 주문합니다."}, {"item": 21, "text": "빠른 처리 만족합니다."}, {"item": 22, "text": "재구매 여기서 여러번 시켜 먹었는데 이번꺼는 너무 자잘하고 상처난 고구마가 많습니다 실 고구마가 너무 많아요~"}, {"item": 23, "text": "달달하니 좋아요~~~"}, {"item": 24, "text": "달콤한 맛보다는 새콤한 맛이 더 많았어요."}, {"item": 25, "text": "재구매 잘 받았습니다. 꾸준히 구매중이에요! 근데 이번엔;; 상자가 다 터져서 왓네요;"}, {"item": 26, "text": "좋은데이유잇나요 그냥좋은거지"}, {"item": 27, "text": "각인도 깔끔하고 제작부터 완성까지 시간도 짧아서 넘 좋았어요! 좋은 상품감사합니다."}, {"item": 28, "text": "놀러가서쓰려고햇는데 아가가 답답한지 시러하네요ㅜ결국 바람넣고쓰지도못햇어요ㅠㅠ"}, {"item": 29, "text": "남편 키가 187cm인데도 팔,다리가 너무 너무 길어요."}, {"item": 30, "text": "인간적으로 너무 허접함 보통 다리미판에 붙어 오는 천보다 훨씬 못함"}, {"item": 31, "text": "고정이 잘 안되요 (등받이)는 생략하고, 방석으로만 사용하고 있어요"}, {"item": 32, "text": "최신 모델로 알고있는데 충전단자가 예전타입이라서 실망했습니다."}, {"item": 33, "text": "요즘 같은시대에 14일(화) 주문에 17일(금) 배송옴요 상태는 이상없구요 다른 충전기랑 충전속도는 비슷하네요 올인원이라 편하긴해요"}, {"item": 34, "text": "한달 써봣는데 더 적극추천드립니다. 뒤척여도 소리 이런거 안나구요. 솔직히 저는 냄새 걱정을 많이했는데 첫날에도 많이 안났지만 미세한 냄새는 한 일주일이면 아예 안납니다. 겨울이라 문닫고 자도 전혀 문제없었어요 ."}, {"item": 35, "text": "효과없음 네개나 샀는데..."}, {"item": 36, "text": "좋아요 피큰좋고 요"}, {"item": 37, "text": "성인남자 혼자 조립하긴 어려워요, 도와줄 사람 있어야 할듯.. 근데 조립하고 보니 정말 선반이 트튼하고 좋긴해요"}, {"item": 38, "text": "물건 사이즈착오로 재배송요구했으나 물건을 다시받기까지너무오래걸리고 다시온 물건 또한 사이즈불량"}, {"item": 39, "text": "배수제한이 걸려있어서 업체 컨택 여러번...."}, {"item": 40, "text": "3개를 같이 구매했는데 2개만 와서 난감했습니다"}, {"item": 41, "text": "좋아여 좋아여 좋아여"}, {"item": 42, "text": "재구매 항상 이용하고 잇습닏. 만족 합니다"}, {"item": 43, "text": "이렇게 안될수가ㅠ 버려야겠어요~시세이도 쓰다 바꿔보고싶어 구매했는데 컬링도 제대로 안되고 속눈썹가닥이 들쑥날쑥해져요"}, {"item": 44, "text": "배송 빠르고 깔끔하나 종이 매우 얇아요."}, {"item": 45, "text": "쇠연결 부분이 좀 약해요"}, {"item": 46, "text": "싸고 배송은 이틀 걸리네요"}, {"item": 47, "text": "코로나 때문인지 배송은 조금 걸리네요"}, {"item": 48, "text": "잘 받았습니다 사은품도 감사합니다"}, {"item": 49, "text": "5살 아들 생애 첫 팔찌인데 너무 맘에 들어해요 받자마자 착용하고 잤네요 ㅎ"}, {"item": 50, "text": "배송이랑 포장은너무좋았어요 맛이 너무 역해요 돈주고 먹으라고해도 저는못먹을꺼같네요 갠적인생각입니다.ㅠ 생각보다 단맛없어요"}, {"item": 51, "text": "차량정비할때 필요해서 주문했는데 부직포네요 ㅠㅠ 요즘 코로나떄문에 그런지 방진복 구매하기가 너무 힘드네요 재질에 부직포원단이라고 표시를 해주시면 구매에 도움이 될듯합니다"}, {"item": 52, "text": "다른 것보다 색이 노랗게 우러나와요^^"}, {"item": 53, "text": "저렴하게 잘 산것 같아요"}, {"item": 54, "text": "살을 더 찌우던지 그냥 입어야겠다.."}, {"item": 55, "text": "좋아요 죻아요 좋아오 좋ㅇㅏ"}, {"item": 56, "text": "아크릴이 아크릴이라서 별다를건 없습니다 좋습니다"}, {"item": 57, "text": "국물맛보고 제가 딱 원하던맛이라 좋아라했는데 무우가 너무 맛이없네요ㅠㅠ 무우만 맛있었어도 딱 좋았는데 너무 아쉽습니다~"}, {"item": 58, "text": "너무 좋아요~ 자주 이용하고있어요"}, {"item": 59, "text": "노라인이라 넘 좋네요~"}, {"item": 60, "text": "100g 10팩으로 오는줄 알았는데 500g 2개로 와서....속상했어요."}, {"item": 61, "text": "그린맘으로 잘먹으서 구매햇더니 배앓이해서 보관중이예요..."}, {"item": 62, "text": "감바스에 올리브오일이 빠져서 왔습니다 이게 말이 되나요? 집에있는거 넣어서 해먹긴 해먹었는데 이런 실수가 두번째네요"}, {"item": 63, "text": "빨리도착했어요 똑같아요"}, {"item": 64, "text": "와이파이를 잡지못해 계속 다시하라고 하면서 프로그램 설치가 안됩니다."}, {"item": 65, "text": "가격에 비해 제품이 너무 좋은것 같아요.. 다른 비슷한 제품보다 좋아요. 배송도 완전 빠르고 조립도 쉬워요"}, {"item": 66, "text": "쓰면 어지러워요... 쳐박템 ㅜㅜ"}, {"item": 67, "text": "너무 작고 손이 안껴져요ㅠㅠ"}, {"item": 68, "text": "신선하지도 않고 날도 더운데 아이스팩 하나 넣어주셨네요"}, {"item": 69, "text": "베송중에 흔들려서그런지 많이 부서져있네요 ㅠㅠ 같이산 다른분꺼는 깨끗하고 풍성한데.. 아쉽네요"}, {"item": 70, "text": "인쇄된 잉크는 번져있고.. 지저분한 것들이 곳곳에 묻어 있었습니다.. 한두장이면 말을 안할텐데.. 다수가 그렇네요. 싼맛에 사긴 했지만 다신 안살 것 같습니다."}, {"item": 71, "text": "뚜껑이 돌리늑넌지 좀 헷갈려 했는데 그냥 누르면되는듯 ㅋ 그게 좀 아쉽네요"}, {"item": 72, "text": "기대 이상입니다 퀄리티도 좋아요"}, {"item": 73, "text": "신발이 정리된 깔끔한 현관이 이렇게 기분좋을줄이야~~~ 진작 살껄그랬네요 강추합니다! 색이 밝아서 신발 바닥 때가 타는게 아쉽긴하지만~ 뭘 깔면될듯하구 넘 만족합니다."}, {"item": 74, "text": "선물용으로 사서 제공함"}, {"item": 75, "text": "가격대비 좋아요 짱인듯"}, {"item": 76, "text": "여름 무라고 하지만 매워도 매워도 이렇게 맵네요 익혀도 맵습니다."}, {"item": 77, "text": "사이즈작아요"}, {"item": 78, "text": "아이 졸업선물겸 초등학교 입학할때 쓰면 좋을거같아 주문했어요 너무 이쁘네요 잘산거같아요 둘째도 꼭 사줘야겠어요"}, {"item": 79, "text": "일회용이라 아쉬움.."}, {"item": 80, "text": "쿨링이 장난 아니고 조용해서 좋습니다만 조립하기가 너무 힘들더군요ㅋ 딸려온 박스종이 찢어가며 뒤에 덧대서 겨우 조였습니다"}, {"item": 81, "text": "재구매 계속 먹던거에요 개별포장되어 있어거 좋아요"}, {"item": 82, "text": "잘받았습니다 모르겠어요 우루오스 ... 는 아닌것 같아서 갈아탔어요^^♡"}, {"item": 83, "text": "씨알 배송이며 포장이며 꼼꼼하고 빠르고 좋아요....."}, {"item": 84, "text": "좋아요 배송도 빠르고 좋아요! 사이즈도 원하던 사이즈라 딱 좋아요 하리오 드리퍼랑도 잘 어울리네요~"}, {"item": 85, "text": "좋아요~ 새로 나와 구매했어요"}, {"item": 86, "text": "중국샨 김치라 별 기대없이 샀는데 추석으로 배송은 조금 늦게 오늘 받았는데 맛은 기대이상입니다 ㅎㅎ 약간 살짝 매운맛이 느껴지지만 그닥 맵지않고 먹기 딱 좋아요 밥도둑이네요ㅎ 담부터 돈 들여 김치 담지않고 그냥 저렴한 맛김치 사 먹을래요 ㅎ"}, {"item": 87, "text": "가볍지만 제법 튼튼하네요"}, {"item": 88, "text": "첨 일주일 빼곤 똑같아요."}, {"item": 89, "text": "결국 잘 깨집니다ㅠㅠ"}, {"item": 90, "text": "세제가 완전 물같네요.. 점성이 하나도 없이.. 세탁력은 좀 더 써봐야 알거 같아요"}, {"item": 91, "text": "조잡스럽네요. 냄새도 심하고"}, {"item": 92, "text": "상품은 아직 사용하지 않았는데 배소에 문제점이 있음. 로젠택배 아저씨 아무런 연락도 없이 문앞에 두고 감."}, {"item": 93, "text": "지샥.. 배터리 AS 보내면, 4만원 이상인데 배터리까지 7천원에 갈았습니다"}, {"item": 94, "text": "공장에서 바로 나온거라 그런지 쇳가루가 묻어있어요.조금 날카로운 느낌도 있습니다.가격은 저렴해서 좋아요"}, {"item": 95, "text": "재구매 온가족이 사용중. 작은 사이즈 두개가 훨씬 실용적임"}, {"item": 96, "text": "생각보다 너무 얇고 접착력도 그리 좋친 않네요..."}, {"item": 97, "text": "간편하게 붙일수있어서 좋아요 ㅋ"}, {"item": 98, "text": "재구매 충전 오지게 잘됨 건전지 수명은 너무 기대 하지 마세요 딱 그사이즈 용량에 딱임. 그냥저냥 충전해서 쓰기엔 기가맥힘.부담 없음."}, {"item": 99, "text": "너무좋아요진짜좋아요"}, {"item": 100, "text": "나오는 입구가 뜯어짐,,ㅠ"}, {"item": 101, "text": "힘줘서 빡빡 눌러야 잘지워집니다 도장 자체에 기스난건 어쩔수없고 안파였다는가정하에 힘줘서 오래하면 잘지워집니다"}, {"item": 102, "text": "재구매 배송이 느린것 빼고 만족스럽습니다"}, {"item": 103, "text": "재구매 상품은 매우 마음에 들고 좋으며, 본사 서비스도 좋고 친절하게 응대해주심!! 다만, 배송기사가 본인 시간에 배송받으라고 함 한명이 여러번 배송왔는데 올때마다 본인시간에 맞춰달라고 계속요구함"}, {"item": 104, "text": "물건은 잘 받았는데 롯데택배 실시간 배송조회가 안되어서 아쉬웠어요"}, {"item": 105, "text": "찍힘이나 이염은 없었는데 안쪽 스웨이드 마감이 굉장히....지저분했어요"}, {"item": 106, "text": "잘쓸게요ㅁ"}, {"item": 107, "text": "살짝 오버핏일줄 알았는데 정사이즈보다 기장이 짧으니 참고하세요! 옷은 편하고 이쁩니다."}, {"item": 108, "text": "안쪽에 얼룩같은게 뭍어있어서, 교환 요청해서 새로 받았지만 받은것도 얼룩이 뭍어있음ㅡㅡ검수도 안하고 보내는지...귀찮아서 그냥 씁니다"}, {"item": 109, "text": "괜찮아요 면재질좋네요"}, {"item": 110, "text": "구멍이 잘나는것 같아요ㅜ"}, {"item": 111, "text": "맛있습니다. 더워서 그런지 꼭지가 좀 떨어진 것이 있습니다"}, {"item": 112, "text": "상품엔 문제가 없는것 같은데 포장이 참... 묶음도 한쪽면만 되어있고.... 저러다 파손되면 누구 책임인지 궁금합니다"}, {"item": 113, "text": "이시국에 죄송합니다....."}, {"item": 114, "text": "위에 상품평 남겼어요 구매 하시는 분들 리필 패치 필히 구매해 놓으세요 자석은 반영구적이라니까요~~~"}, {"item": 115, "text": "제가 잘못 찐건지ㅜㅜ비렸어요 저는.."}, {"item": 116, "text": "재구매 이번엔 유통기한 임박한 우유들이 왔네요."}, {"item": 117, "text": "배송도 빠르고 포장상태도 좋아요"}, {"item": 118, "text": "상품오배송으로 너무 오래걸렸어요. 판매자실순데 오배송한거 찾아서 다시 받아야하니 너무 불편했네요."}, {"item": 119, "text": "색이너무별로에요;;"}, {"item": 120, "text": "색상이나 사용감 대체로 만족합니다. 아기띠어 덧대니 조금 무거워지긴하지만 보온성 있는것 같아요"}, {"item": 121, "text": "벌레가 오지 못하니까 안에 있으면 안심이 돼요"}, {"item": 122, "text": "생각보다매우크고박시합니다ㅋ"}, {"item": 123, "text": "네 만족해요 포장도 꼼꼼히 되있고"}, {"item": 124, "text": "매번 먹이던 사료에요 ! 사진은 기존 사료사진이지만 리뉴얼된건 진공포장에 투명봉투에요 소분포장되어있어서 좋네요"}, {"item": 125, "text": "첫향너무 풀냄새 강한반면 잔향또한 타제품에비해 거의 없는편.... 재구매의향없음 다음엔 올리브영제품을사겠음"}, {"item": 126, "text": "가성비는 좋으나 날 위아래가 정확히 맞지 않아서 조금 깍이는게 이상하긴 하네요.."}, {"item": 127, "text": "좋아요! 잘 먹겠습니다~ 사업 번창하세요<"}, {"item": 128, "text": "맛있어요 평이 좋아구입했는데, 확실히 다르네요. 맛있어요. 무른 거 하나도 없이 엄청 아삭거려요. 잘 먹을께요."}, {"item": 129, "text": "좋아요 ㅎㅎ 비싼거 살 필요없을듯 완전 맘에듭니다"}, {"item": 130, "text": "좋아요오오오ㅗ옹"}, {"item": 131, "text": "에그석은 생각보다 너무커서 스몰월드에는 적용불가 더 작은사이즈를 샀어야했어요ㅜ"}, {"item": 132, "text": "재구매 지난번에 맛있어서 재구매했는데 이번인 질기고 길어서 먹기 힘들었어요"}, {"item": 133, "text": "살짝 눅눅한것도 있지만 양호합니다"}, {"item": 134, "text": "굳이 필요는 없지만.. 처음부터 글쓰면 번지거나 하니까 깔끔하게 쓰고싶어서 앞장에 하나 끼우고 먼슬리랑 프리노트랑 구분하려고 또 하나 끼웠어요 굳이 필요는 없지만 어쨌든 만족합니다"}, {"item": 135, "text": "배송 빠르고 믿고 구매해요 여기서"}, {"item": 136, "text": "상품은 괜찮은데 배송 최악요 ㅎㅎ 4일 걸렸던거같네요 ㅎ 고객센터랑 연락도안되요"}, {"item": 137, "text": "만족하고 잘 쓰고 있습니다~!"}, {"item": 138, "text": "재구매 포장도 적당하고 맛도 좋아요"}, {"item": 139, "text": "아니 문구 변경한다고 Q&A에 남기고 변경답변하시고 상담원과 통화로도 이야기하고 변경됐다고 했는데 정작 배달된 문구는 변경전이네요? 놀리시나요?"}, {"item": 140, "text": "안해봣는데 설래네요"}, {"item": 141, "text": "동생 선물해줬는데 너무 좋아하네요~"}, {"item": 142, "text": "2개를 샀는데 한개는 중간 기둥쪽에 약 4센치가량 스크래치가 있어요 반품하기 귀찮아 그냥씁니다 검수 잘하셔서 보내시면 좋겠어요."}, {"item": 143, "text": "싸고 충전이 빠릅니다. 하지만..세트 설명이 보기 힘드네요. 2개 세트인줄 알고 시켰는데 콘센트 부위만 추가로 옵니다."}, {"item": 144, "text": "조카주려고 친구 선물해줬어요^^ 애기가 마음에 들어하네요! 예쁩니다."}, {"item": 145, "text": "예뻐요, 가격대비 안싸보일뿐 마감이 저렴이 같아요~ 그러나 만족이요~ 바닥 긁히는 소리잡기가 힘들어요 .. 다리모양이 바닥에 가까울수록 얆아지는 모양이라~"}, {"item": 146, "text": "냄새야 그렇다 치고 불량들 보내놓고 반품없길 바라는거냐? 확인도안하고 보내니? 뭔 마작 20개가 실이 끊어져잇냐 푼돈으로 밥이나 사묵어라 귀찮아서 대충쓰다 버릴란다"}, {"item": 147, "text": "집에 날파리?? 때문에 구매했는데 많이 타탁 거리지는 않지만 그래도 조금은 들어가네요"}, {"item": 148, "text": "3개중 하나 성공 어렵네요 ㅠㅠ"}, {"item": 149, "text": "해외여행때문에 구매했는데 우한페렴때문에 취소했어요ㅠㅠ 공항가기가 무섭더라구요 집에서 쓰는 침구에 뿌려봤는데 향은 생각보다 괜찮아요 환기시킬때 뿌리면 좋아요 용량도 좋구 분사력도 괜찮아요 배송도 뽁뽁이땜에 새거나 파손없이 잘왔습니당"}, {"item": 150, "text": "아이가 물총을 쏘는데 분리돼요"}, {"item": 151, "text": "랑콤립스틱과 함께 바르지만 늘 피펄을 더 많이 바르네오. 가격대비 진짜 오지는 립스틱...!"}, {"item": 152, "text": "교환품은 잘 받았습니다 감사합니다"}, {"item": 153, "text": "너무너무 좋아요!"}, {"item": 154, "text": "고양이들이 잘 쓰는데 종이 먼지가 많이 생겨요"}, {"item": 155, "text": "보호필름이라기보다는 비닐랩 같네요.. 3세대라 해서 믿구샀는데... 불량품인지는 모르겠지만 벌써 벌어지내요.."}, {"item": 156, "text": "계속쓰고있는데 참 좋아요"}, {"item": 157, "text": "굿굿굿 정말 좋아요 굿굿굿"}, {"item": 158, "text": "동영상 찾아보면서 만들었어요! 사장님 너무 친절하시고, 빠른배송도 너무 좋았어요"}, {"item": 159, "text": "자르면 나머지는 못 쓰는건가여? 여러번 할 수 있다고 착각한 것 같아여..왜 5m를 또 샀을까ㅠㅠ"}, {"item": 160, "text": "추천합니다 배송도 빠르고 사은품도 맘에들어요 젠틀몬스터 선글라스 강추합니다 실물도 이쁘고요 담에 또 이쁜거 구매해야할듯요"}, {"item": 161, "text": "좋을거같긴한데 물기가많이. 없다고하시네요"}, {"item": 162, "text": "옷도 귀엽고 편합니다! 근데 사이즈가 많이 큰 편이긴 하네요~"}, {"item": 163, "text": "좋아요^^ 크기가 살짝 작은거 같아요."}, {"item": 164, "text": "음..시원해요 좋아요.."}, {"item": 165, "text": "저번주에받아서오늘끓여봤어요~~부드럽고맛있네요~~가끔하나씩두꺼운부분이있긴한데...점성이느껴져서좋아요~~~맛있어요~~~다먹고나서또사서먹어야겠어요~~~"}, {"item": 166, "text": "강아지가 와작와작 잘 씹어먹어요."}, {"item": 167, "text": "가격도 저렴하고 좋네요..."}, {"item": 168, "text": "재구매한 제품입니다. 품질이 좋아오ㅡ~"}, {"item": 169, "text": "빠른배송 리뷰보고 시켰는데 기대를 너무많이해서 그런지 달지 않음 씹을거리로 구매했지만 더이상 구매는 못할듯"}, {"item": 170, "text": "한번 쓰고 고리가 떨어져서 무용지물 됐네요...."}, {"item": 171, "text": "당분간 다른 펜은 생각안날듯"}, {"item": 172, "text": "평소 다홍색 계열을 좋아해서 피치색으로 구매했어요. 실리콘이라 세척도 쉬울것같구요^^ 실제색은 연한살구색인것같아요 ㅎ"}, {"item": 173, "text": "설명서가 없어서.. 어떻게 행할지..."}, {"item": 174, "text": "생각보다 길어요~~^^"}, {"item": 175, "text": "튼튼하고 좋네요 박스도 생각보다 커서 놀랐고 안전하게 담겨있네요"}, {"item": 176, "text": "배송은 빨랐지만 여러번 주문했는데 저렴해서 그런지 갈수록 엉망이네요 찢어진게 오질않나 이것저것 실망스럽네요"}, {"item": 177, "text": "재구매 덜티네요~~~~~~~"}, {"item": 178, "text": "견고해보이기는 하나 모르겠네요 접이식 조금 불안ㅎ"}, {"item": 179, "text": "초기불량 하자있는상품 문의넣었는데 답변이없네요ㅡㅡ 반품 귀찮아서 구매확정합니다 저기 흠파인데 잡고 힘주면찢어질거같아요"}, {"item": 180, "text": "사이즈가 생각보다 작아요 재질은 힘 쎄게주면 뿌러질것같아요 디자인은 이뻐요"}, {"item": 181, "text": "배송, 사이즈, 고객서비스 ..가 김여정 입처럼 dirty 그.자체"}, {"item": 182, "text": "좋소 아주좋소ㅂㅈㅂㅊㅂㅈㄱㄷㄱㅅㅇㄱㅇㄱㅁㅂㅇㅅㄱㅅㄱㅈㄱㅈㅍㅊㅂㅈㅂㅈㅂㅈㅂㄱㅊㄱㅈㅂㅈㅂㅊㅂㄷㄱㄴㄱㅅㄱ"}, {"item": 183, "text": "배송빠름 배송도 빠르고 싸게 잘샀어영ㅋㅋㅋㅈㅂㅌㄱㅈㄱㅅㄱㄷㄱㅅㄱㄷㅂㅈㄱㄷㄱㅅ귻ㄱㄷㅈㄱ ㅈㄴㅅ ㅈㄴ ㄱ"}, {"item": 184, "text": "숨쉬기가 편하네요 사이즈는 큽니다"}, {"item": 185, "text": "선물했는데 좋아해요 만족해요"}, {"item": 186, "text": "마음에 듭니다...."}, {"item": 187, "text": "빠른배송 ! 저렴한 가격 !"}, {"item": 188, "text": "철로 된 다리쪽이 부실해서 막 휘어져요. 잘못치면 넘어질꺼같아요."}, {"item": 189, "text": "아이가 좋아하고 다 좋은데.. 치카하고 자고 일어나면 아침에 입냄새가 좀 심하네요.. 다른치약은 안그렇더라구요~ 근데 아기는 너무 좋아해요^^"}, {"item": 190, "text": "재구매 지난번 구매와 마찬가지로 마카다미아4호인데 알이 너무 잘아요. 지난번에는 굵은 알이어서 좋았는데 왜 그런거죠?"}, {"item": 191, "text": "가성비로 따지면 괜찮아요."}, {"item": 192, "text": "별로 그닥 통증효과 없네요~ 접착력 떼서 쓰기 편리하게는 만들엇는데 효과꽝 인듯요~ 저렴해서 산게 실수~"}, {"item": 193, "text": "재구매 좋은오일입니다 괜춘"}, {"item": 194, "text": "배송 느림 답이 없음"}, {"item": 195, "text": "잘받았어요의약부외품인줄 알았는데 아니네여"}, {"item": 196, "text": "저렴하게 잘 샀습니다. 타이어 광택재 잘샀습니다. 날씨 풀려서 빨리 세차 하러 가고 싶습니다.용량도 생각보다 많이 크네요~다쓰면 또 구매할게요"}, {"item": 197, "text": "아이가 편하다해서 구입했는데 천 별로네요"}, {"item": 198, "text": "선물로 보냈어요 기능도 좋다고 고마워하네요"}, {"item": 199, "text": "재구매 좋아요 좋아요 좋카구요"}, {"item": 200, "text": "너무 번지고 벌써 고장 난것 같은 기미가 보이네요"}];
+const ASPECTS = [["배송_delivery", "Delivery 배송", "q"], ["가격_price", "Price 가격", "w"], ["품질_quality", "Quality 품질", "e"], ["포장_packaging", "Packaging 포장", "r"], ["서비스_service", "Service 서비스", "t"], ["기타_other", "Other 기타", "y"]];
+const SENT = [["pos","Positive 긍정","1"],["neg","Negative 부정","2"],["mixed","Mixed 혼합","3"],["neutral","Neutral 중립","4"]];
+let who = null, i = 0, L = {};
+const app = document.getElementById("app");
+const key = () => "labels_" + who + "_" + ITEMS.length;
+function store(){ try{ localStorage.setItem(key(), JSON.stringify({i, L})); }catch(e){} }
+function restore(){ try{ const s = JSON.parse(localStorage.getItem(key()) || "null"); if(s){ L = s.L || {}; i = s.i || 0; } }catch(e){} }
+const cur = () => (L[ITEMS[i].item] ||= {s:"", a:{}, u:false, n:""});
+const done = () => ITEMS.filter(x => L[x.item] && (L[x.item].s || L[x.item].u)).length;
+
+function start(){
+  app.innerHTML = `<div class="start card"><h1>Review labeling</h1>
+  <p class="muted">Label the text only. Do not look at the other annotator's labels.</p>
+  <p>Which annotator are you?</p><button class="primary" onclick="pick('A')">Annotator A</button>
+  <button class="primary" onclick="pick('B')">Annotator B</button>
+  <p class="muted">Progress is saved in this browser. Use the same browser to continue later.</p></div>`;
+}
+function pick(w){ who = w; restore(); render(); }
+
+function render(){
+  const it = ITEMS[i], c = cur(), n = done();
+  app.innerHTML = `<header><h1>Annotator ${who} · Review ${i+1} / ${ITEMS.length}</h1>
+    <span class="muted">${n} labeled</span></header>
+  <div class="bar"><div style="width:${100*n/ITEMS.length}%"></div></div>
+  <div class="card">
+    <div class="muted">Item ${it.item}</div>
+    <div class="review"></div>
+    <div class="muted">Overall sentiment of the text</div>
+    <div class="row">${SENT.map(([v,l,k]) => `<button class="s-${v} ${c.s===v?"on":""}" onclick="setS('${v}')">${l} <kbd>${k}</kbd></button>`).join("")}</div>
+    <div class="muted" style="margin-top:10px">Aspects mentioned (leave blank if not mentioned). Key cycles blank → pos → neg.</div>
+    <div class="asp">${ASPECTS.map(([col,l,k]) => `<div><span>${l} <kbd>${k}</kbd></span><span>
+      <button class="a-pos ${c.a[col]==="pos"?"on":""}" onclick="setA('${col}','pos')">pos</button>
+      <button class="a-neg ${c.a[col]==="neg"?"on":""}" onclick="setA('${col}','neg')">neg</button></span></div>`).join("")}</div>
+    <div class="row" style="margin-top:10px"><button class="${c.u?"on s-neutral":""}" onclick="toggleU()">Can't judge (unclear) <kbd>x</kbd></button></div>
+    <textarea id="note" placeholder="Note for hard cases (optional)">${esc(c.n)}</textarea>
+    <div class="warn" id="warn"></div>
+    <div class="nav"><button onclick="go(-1)">← Back</button>
+      <span class="muted"><kbd>Enter</kbd> next · <kbd>←</kbd> back · <kbd>j</kbd> jump to first unlabeled</span>
+      <button class="primary" onclick="go(1)">Next →</button></div>
+  </div>
+  <div class="row" style="margin-top:14px"><button onclick="exportCSV()">Export CSV (${n}/${ITEMS.length})</button>
+    <button onclick="switchWho()">Switch annotator</button></div>
+  <details><summary>Labeling rules (short version)</summary><ul>
+    <li><b>pos</b>: overall satisfied, even with a small reservation. <b>neg</b>: overall dissatisfied, even with a small positive.</li>
+    <li><b>mixed</b>: clear praise and clear complaint with no obvious winner. <b>neutral</b>: no opinion (e.g. "잘 받았습니다").</li>
+    <li>Judge the meaning, not keywords: "별로 안 좋아요" → neg, "나쁘지 않아요" → usually pos. Sarcasm counts as what is meant.</li>
+    <li>Quality = the product itself (material, taste, size, function, design). Price includes 가성비.</li>
+    <li>Full guide: annotation/LABELING_GUIDE.md</li></ul></details>`;
+  app.querySelector(".review").textContent = it.text;
+  document.getElementById("note").oninput = e => { cur().n = e.target.value; store(); };
+}
+function esc(s){ return (s||"").replace(/[&<>"]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m])); }
+function setS(v){ const c = cur(); c.s = c.s===v ? "" : v; if(c.s) c.u = false; store(); render(); }
+function setA(col, v){ const c = cur(); c.a[col] = c.a[col]===v ? "" : v; store(); render(); }
+function cycleA(col){ const c = cur(), o = ["", "pos", "neg"]; c.a[col] = o[(o.indexOf(c.a[col]||"")+1)%3]; store(); render(); }
+function toggleU(){ const c = cur(); c.u = !c.u; if(c.u) c.s = ""; store(); render(); }
+function go(d){
+  const c = cur();
+  if(d>0 && !c.s && !c.u){ document.getElementById("warn").textContent = "Choose a sentiment (or 'unclear') before moving on."; return; }
+  i = Math.min(ITEMS.length-1, Math.max(0, i+d)); store(); render(); window.scrollTo(0,0);
+}
+function jump(){ const k = ITEMS.findIndex(x => !(L[x.item] && (L[x.item].s || L[x.item].u))); if(k>=0){ i = k; store(); render(); } }
+function switchWho(){ who = null; i = 0; L = {}; start(); }
+function exportCSV(){
+  const cols = ["item","text","text_sentiment",...ASPECTS.map(a=>a[0]),"unclear","note"];
+  const q = v => '"' + String(v ?? "").replace(/"/g,'""') + '"';
+  const rows = ITEMS.map(it => { const c = L[it.item] || {s:"",a:{},u:false,n:""};
+    return [it.item, it.text, c.s, ...ASPECTS.map(a => c.a[a[0]]||""), c.u?"1":"", c.n].map(q).join(","); });
+  const blob = new Blob(["﻿" + [cols.join(","), ...rows].join("\n")], {type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `pilot_annotator_${who}.csv`; a.click();
+}
+document.addEventListener("keydown", e => {
+  if(!who || e.target.tagName === "TEXTAREA" || e.metaKey || e.ctrlKey) return;
+  const s = SENT.find(x => x[2] === e.key); if(s){ setS(s[0]); return; }
+  const a = ASPECTS.find(x => x[2] === e.key.toLowerCase()); if(a){ cycleA(a[0]); return; }
+  if(e.key === "x") toggleU(); else if(e.key === "Enter" || e.key === "ArrowRight") go(1);
+  else if(e.key === "ArrowLeft") go(-1); else if(e.key === "j") jump();
+});
+start();
+</script></body></html>
